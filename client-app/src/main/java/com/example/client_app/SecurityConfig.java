@@ -30,3 +30,30 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
 }
 
 }
+
+/*
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    @Autowired
+    private LoginSuccessAuditHandler successHandler;
+
+    @Autowired
+    private LoginFailureAuditHandler failureHandler;
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/index").permitAll()
+                .anyRequest().authenticated()
+            )
+            .oauth2Login(oauth2 -> oauth2
+                .successHandler(successHandler)
+                .failureHandler(failureHandler)
+            );
+        return http.build();
+    }
+}
+ */
