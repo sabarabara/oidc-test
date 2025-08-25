@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  auth-server:
+    build:
+      context: ./auth-server
+      dockerfile: Dockerfile
+    container_name: auth-server
+    ports:
+      - "8080:8080"
+    networks:
+      - demo-net
+
+  client-app:
+    build:
+      context: ./client-app
+      dockerfile: Dockerfile
+    container_name: client-app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - auth-server
+    networks:
+      - demo-net
+
+networks:
+  demo-net:
+    driver: bridge
